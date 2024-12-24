@@ -1,4 +1,4 @@
-package com.example.a19dhjetor2024;
+package com.example.androidproject2024;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class LogInActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private ProgressBar progressBar;
@@ -49,14 +49,14 @@ public class LogInActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         loginButton.setOnClickListener(v -> loginUser());
-        registerButton.setOnClickListener(v -> startActivity(new Intent(LogInActivity.this, MainActivity.class)));
-        forgotPasswordButton.setOnClickListener(v -> startActivity(new Intent(LogInActivity.this, ForgetPasswordActivity.class)));
+        registerButton.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, MainActivity.class)));
+      //  forgotPasswordButton.setOnClickListener(v -> startActivity(new Intent(LogInActivity.this, ForgetPasswordActivity.class)));
         resendCodeButton.setOnClickListener(v -> resendVerificationCode());
 
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LogInActivity.this, "Buttoni i ri!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Buttoni i ri!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -94,17 +94,10 @@ public class LogInActivity extends AppCompatActivity {
                 FirebaseUser user = mAuth.getCurrentUser();
                 Log.d("Login", "Login successful. Checking email verification...");
 
-                if (user != null && user.isEmailVerified()) {
-                    Log.d("Login", "Email verified. Navigating to HomeActivity.");
-                    startActivity(new Intent(LogInActivity.this, HomeActivity.class));
-                    finish();
-                } else {
-                    Log.d("Login", "Email not verified.");
-                    Toast.makeText(LogInActivity.this, "Please verify your email.", Toast.LENGTH_LONG).show();
-                }
+
             } else {
                 Log.e("Login", "Login failed: " + task.getException());
-                Toast.makeText(LogInActivity.this, "Login failed. Please check your credentials.", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Login failed. Please check your credentials.", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -117,19 +110,19 @@ public class LogInActivity extends AppCompatActivity {
                 user.sendEmailVerification().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d("EmailVerification", "Verification email sent.");
-                        Toast.makeText(LogInActivity.this, "Verification email sent.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Verification email sent.", Toast.LENGTH_LONG).show();
                     } else {
                         Log.e("EmailVerification", "Failed to send verification email.", task.getException());
-                        Toast.makeText(LogInActivity.this, "Failed to send verification email.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Failed to send verification email.", Toast.LENGTH_LONG).show();
                     }
                 });
             }else {
                 Log.d("EmailVerification", "User is already verified.");
-                Toast.makeText(LogInActivity.this, "Email is already verified.", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Email is already verified.", Toast.LENGTH_LONG).show();
             }
         } else {
             Log.d("EmailVerification", "No user signed in.");
-            Toast.makeText(LogInActivity.this, "No user to send verification email to.", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "No user to send verification email to.", Toast.LENGTH_LONG).show();
         }
     }
 }
