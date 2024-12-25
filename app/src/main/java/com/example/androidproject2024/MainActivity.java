@@ -102,6 +102,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        progressBar.setVisibility(View.VISIBLE);
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    progressBar.setVisibility(View.GONE);
+
+                    if (task.isSuccessful()) {
+                        String userId = mAuth.getCurrentUser().getUid();
+                        User user = new User(name, surname, email);
+
+                        databaseReference.child(userId).setValue(user).addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(verificationTask -> {
+                                    if (verificationTask.isSuccessful()) {
+                                        Toast.makeText(MainActivity.this, "Registration successful. Please verify your email.", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Log.e("MainActivity", "Email verification failed: " + verificationTask.getException());
+                                        Toast.makeText(MainActivity.this, "Failed to send verification email.", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            } else {
+                                Log.e("MainActivity", "Database write failed: " + task1.getException());
+                                Toast.makeText(MainActivity.this, "Failed to save user data. Try again.", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        Log.e("MainActivity", "Authentication failed: " + task.getException());
+                        Toast.makeText(MainActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
     }
 
 
