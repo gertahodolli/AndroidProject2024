@@ -37,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        nameEditText = findViewById(R.id.nameEditText);
+        surnameEditText = findViewById(R.id.surnameEditText);
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         registerButton = findViewById(R.id.registerButton);
+        logInButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
         // Initialize Firebase Auth and Database references
         mAuth = FirebaseAuth.getInstance();
