@@ -27,3 +27,4 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         recipeImageView.setImageResource(image);
         recipeInstructionsTextView.setText(instructions);
     }
+}
