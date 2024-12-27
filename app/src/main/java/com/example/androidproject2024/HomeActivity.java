@@ -1,24 +1,32 @@
 package com.example.androidproject2024;
 
-import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
+import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+    private RecyclerView recipesRecyclerView;
+    private RecipesAdapter adapter;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        recipesRecyclerView = findViewById(R.id.recipesRecyclerView);
+        dbHelper = new DatabaseHelper(this);
+        loadRecipes();
+    }
+
+    private void loadRecipes() {
+        List<Recipe> recipes = dbHelper.getAllRecipes();
+        adapter = new RecipesAdapter(recipes, this);
+        recipesRecyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // Set grid layout with 2 columns
+        recipesRecyclerView.setAdapter(adapter);
     }
 }
