@@ -45,21 +45,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void insertInitialRecipes(SQLiteDatabase db) {
         List<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("Spaghetti Carbonara", R.drawable.sCarbonara, "Cook pasta, fry pancetta with garlic, and mix with eggs and parmesan."));
-        recipes.add(new Recipe("Spaghetti Bolognese", R.drawable.sBolognese, "Cook spaghetti and serve with a hearty meat sauce."));
-        recipes.add(new Recipe("Spaghetti Aglio e Olio", R.drawable.sAglioOlio, "Sauté garlic in olive oil, add red pepper flakes, and toss with spaghetti."));
-        recipes.add(new Recipe("Spaghetti al Pomodoro", R.drawable.sPomodoro, "Simple tomato sauce with fresh basil served over spaghetti."));
-        recipes.add(new Recipe("Spaghetti alla Puttanesca", R.drawable.sPuttanesca, "Tomato sauce with olives, anchovies, and capers."));
-        recipes.add(new Recipe("Spaghetti Cacio e Pepe", R.drawable.sCacioPepe, "Cook spaghetti, and toss with Pecorino Romano cheese and black pepper."));
-        recipes.add(new Recipe("Spaghetti alla Norma", R.drawable.sAllaNorma, "Serve spaghetti with a sauce of tomatoes, fried eggplant, basil, and ricotta salata."));
-        recipes.add(new Recipe("Spaghetti with Clam Sauce", R.drawable.sClam, "Cook spaghetti and toss with a sauce of clams, garlic, parsley, and white wine."));
-        recipes.add(new Recipe("Spaghetti al Limone", R.drawable.sLimone, "Lemon zest and juice blended with cream, Parmesan, and pasta water for a creamy citrus sauce over spaghetti."));
-        recipes.add(new Recipe("Spaghetti Primavera", R.drawable.sPrimavera, "Toss spaghetti with sautéed seasonal vegetables, garlic, and Parmesan."));
-        recipes.add(new Recipe("Spaghetti alla Gricia", R.drawable.sGricia, "Cook spaghetti and combine with guanciale, Pecorino Romano cheese, and plenty of black pepper."));
-        recipes.add(new Recipe("Garlic Shrimp Spaghetti", R.drawable.sShrimp, "Sauté shrimp with garlic, parsley, and chili, then toss with spaghetti."));
-        recipes.add(new Recipe("Spaghetti with Meatballs", R.drawable.sMeatball, "Serve spaghetti with homemade meatballs simmered in marinara sauce."));
-        recipes.add(new Recipe("Spaghetti al Nero di Seppia", R.drawable.sSeppia, "Spaghetti cooked with cuttlefish ink, seafood, garlic, and white wine."));
-        recipes.add(new Recipe("Creamy Mushroom Spaghetti", R.drawable.sMushroom, "Sauté mushrooms and mix with a creamy sauce served over spaghetti."));
+        recipes.add(new Recipe("Spaghetti Carbonara", R.drawable.s_carbonara, "Cook pasta, fry pancetta with garlic, and mix with eggs and parmesan."));
+        recipes.add(new Recipe("Spaghetti Bolognese", R.drawable.s_bolognese, "Cook spaghetti and serve with a hearty meat sauce."));
+        recipes.add(new Recipe("Spaghetti Aglio e Olio", R.drawable.s_aglio_olio, "Sauté garlic in olive oil, add red pepper flakes, and toss with spaghetti."));
+        recipes.add(new Recipe("Spaghetti al Pomodoro", R.drawable.s_pomodoro, "Simple tomato sauce with fresh basil served over spaghetti."));
+        recipes.add(new Recipe("Spaghetti alla Puttanesca", R.drawable.s_puttanesca, "Tomato sauce with olives, anchovies, and capers."));
+        recipes.add(new Recipe("Spaghetti Cacio e Pepe", R.drawable.s_caciopepe, "Cook spaghetti, and toss with Pecorino Romano cheese and black pepper."));
+        recipes.add(new Recipe("Spaghetti alla Norma", R.drawable.s_allanorma, "Serve spaghetti with a sauce of tomatoes, fried eggplant, basil, and ricotta salata."));
+        recipes.add(new Recipe("Spaghetti with Clam Sauce", R.drawable.s_clam, "Cook spaghetti and toss with a sauce of clams, garlic, parsley, and white wine."));
+        recipes.add(new Recipe("Spaghetti al Limone", R.drawable.s_limone, "Lemon zest and juice blended with cream, Parmesan, and pasta water for a creamy citrus sauce over spaghetti."));
+        recipes.add(new Recipe("Spaghetti Primavera", R.drawable.s_primavera, "Toss spaghetti with sautéed seasonal vegetables, garlic, and Parmesan."));
+        recipes.add(new Recipe("Spaghetti alla Gricia", R.drawable.s_gricia, "Cook spaghetti and combine with guanciale, Pecorino Romano cheese, and plenty of black pepper."));
+        recipes.add(new Recipe("Garlic Shrimp Spaghetti", R.drawable.s_shrimp, "Sauté shrimp with garlic, parsley, and chili, then toss with spaghetti."));
+        recipes.add(new Recipe("Spaghetti with Meatballs", R.drawable.s_meatball, "Serve spaghetti with homemade meatballs simmered in marinara sauce."));
+        recipes.add(new Recipe("Spaghetti al Nero di Seppia", R.drawable.s_seppia, "Spaghetti cooked with cuttlefish ink, seafood, garlic, and white wine."));
+        recipes.add(new Recipe("Creamy Mushroom Spaghetti", R.drawable.s_mushroom, "Sauté mushrooms and mix with a creamy sauce served over spaghetti."));
 
 
         for (Recipe recipe : recipes) {
