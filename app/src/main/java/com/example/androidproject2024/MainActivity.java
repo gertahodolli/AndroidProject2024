@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         String userId = mAuth.getCurrentUser().getUid();
                         User user = new User(name, surname, email);
+                        databaseReference.child(userId).setValue(user);
 
                         databaseReference.child(userId).setValue(user).addOnCompleteListener(task1 -> {
                             if (task1.isSuccessful()) {

@@ -34,7 +34,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/user_solid__3_" />
+                android:src="@drawable/user_solid_3" />
 
             <TextView
                 android:id="@+id/textViewUserName"
@@ -44,7 +44,8 @@
                 android:textSize="24sp"
                 android:textColor="#FF5722"
                 android:layout_marginTop="8dp"
-                android:text="User Name" />
+                android:text="User Name"
+                android:visibility="visible" />`
 
             <EditText
                 android:id="@+id/editTextBio"
