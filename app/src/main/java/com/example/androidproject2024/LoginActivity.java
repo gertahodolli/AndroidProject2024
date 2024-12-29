@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(v -> loginUser());
         registerButton.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, MainActivity.class)));
-      //  forgotPasswordButton.setOnClickListener(v -> startActivity(new Intent(LogInActivity.this, ForgetPasswordActivity.class)));
+        forgotPasswordButton.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ForgetPasswordActivity.class)));
         resendCodeButton.setOnClickListener(v -> resendVerificationCode());
 
         newButton.setOnClickListener(new View.OnClickListener() {

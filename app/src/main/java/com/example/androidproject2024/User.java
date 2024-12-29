@@ -1,15 +1,21 @@
 package com.example.androidproject2024;
-
 public class User {
-    public String name, surname, email;
+    public String name;
+    public String surname;
+    public String email;
+    public String bio;
+    public String location;
+    public String contactNumber;
 
+    // Default constructor required for Firebase
     public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
+    // Constructor with parameters
     public User(String name, String surname, String email) {
         this.name = name;
         this.surname = surname;
         this.email = email;
+
     }
 }

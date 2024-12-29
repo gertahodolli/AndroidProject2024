@@ -27,4 +27,9 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textColor="#3E2723" />
+    <Button
+        android:id="@+id/goBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go Back" />
 </LinearLayout>
