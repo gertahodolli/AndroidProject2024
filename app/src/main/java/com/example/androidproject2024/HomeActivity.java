@@ -37,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -46,16 +48,15 @@ public class HomeActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
-
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
             } else if (id == R.id.nav_profile) {
                 Intent intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
-                // Handle the profile action
             } else if (id == R.id.nav_about) {
-                // Handle the about action
+                Intent intent = new Intent(this, AboutUsActivity.class);
+                startActivity(intent);
             }
-
-            DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
             return true;
         });
