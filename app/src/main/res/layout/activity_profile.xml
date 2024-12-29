@@ -34,7 +34,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/user_solid_3" />
+                android:src="@drawable/user_solid__3_" />
 
             <TextView
                 android:id="@+id/textViewUserName"
