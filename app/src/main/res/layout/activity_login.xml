@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:text="Forgot Password?"
             android:textColor="@color/white"
-            android:background="#000000"
+            android:backgroundTint="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp" />
 
@@ -97,8 +97,9 @@
             android:layout_height="wrap_content"
             android:text="Resend Verification Email"
             android:textColor="@color/white"
-            android:background="#000000"
+            android:backgroundTint="@color/black"
             android:layout_marginBottom="12dp" />
+
 
     </LinearLayout>
 </ScrollView>

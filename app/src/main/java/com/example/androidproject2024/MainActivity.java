@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            String passwordPattern = "^(?=.[A-Z])(?=.\\d)(?=.*[!@#$%^&()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
+            String passwordPattern = "^(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
             if (TextUtils.isEmpty(password)) {
                 passwordEditText.setError("Password is required.");
                 passwordEditText.requestFocus();
