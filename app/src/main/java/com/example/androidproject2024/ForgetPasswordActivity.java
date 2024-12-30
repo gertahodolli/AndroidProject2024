@@ -27,44 +27,65 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forget_password);
+        try {
+            setContentView(R.layout.activity_forget_password);
 
-        emailEditText = findViewById(R.id.emailEditText);
-        resetPasswordButton = findViewById(R.id.resetPasswordButton);
-        progressBar = findViewById(R.id.progressBar);
-        goBackButton = findViewById(R.id.goBack);
+            emailEditText = findViewById(R.id.emailEditText);
+            resetPasswordButton = findViewById(R.id.resetPasswordButton);
+            progressBar = findViewById(R.id.progressBar);
+            goBackButton = findViewById(R.id.goBack);
 
-        mAuth = FirebaseAuth.getInstance();
+            mAuth = FirebaseAuth.getInstance();
 
-        resetPasswordButton.setOnClickListener(v -> resetPassword());
-        goBackButton.setOnClickListener(v -> startActivity(new Intent(ForgetPasswordActivity.this, LoginActivity.class)));
+            resetPasswordButton.setOnClickListener(v -> {
+                try {
+                    resetPassword();
+                } catch (Exception e) {
+                    Toast.makeText(this, "An error occurred while resetting the password.", Toast.LENGTH_SHORT).show();
+                }
+            });
 
+            goBackButton.setOnClickListener(v -> {
+                try {
+                    startActivity(new Intent(ForgetPasswordActivity.this, LoginActivity.class));
+                } catch (Exception e) {
+                    Toast.makeText(this, "An error occurred while navigating back.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e) {
+            Toast.makeText(this, "An error occurred during initialization: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void resetPassword() {
-        String email = emailEditText.getText().toString().trim();
-
-        if (TextUtils.isEmpty(email)) {
-            emailEditText.setError("Email is required.");
-            emailEditText.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText.setError("Please enter a valid email.");
-            emailEditText.requestFocus();
-            return;
-        }
-
-        progressBar.setVisibility(View.VISIBLE);
-
         try {
+            String email = emailEditText.getText().toString().trim();
+
+            if (TextUtils.isEmpty(email)) {
+                emailEditText.setError("Email is required.");
+                emailEditText.requestFocus();
+                return;
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailEditText.setError("Please enter a valid email.");
+                emailEditText.requestFocus();
+                return;
+            }
+
+            progressBar.setVisibility(View.VISIBLE);
+
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
                 progressBar.setVisibility(View.GONE);
-                if (task.isSuccessful()) {
-                    Toast.makeText(ForgetPasswordActivity.this, "Password reset email sent.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(ForgetPasswordActivity.this, "Failed to send reset email.", Toast.LENGTH_LONG).show();
+                try {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(ForgetPasswordActivity.this, "Password reset email sent.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(ForgetPasswordActivity.this, "Failed to send reset email.", Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(ForgetPasswordActivity.this, "An error occurred while handling the result: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
         } catch (Exception e) {
