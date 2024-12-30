@@ -64,9 +64,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/white"
             android:backgroundTint="@color/black"
             android:layout_marginBottom="12dp"
+            android:elevation="4dp" />
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/black"
             android:elevation="4dp" />
 
         <!-- Forgot Password Button -->
@@ -76,7 +86,8 @@
             android:layout_height="wrap_content"
             android:text="Forgot Password?"
             android:textColor="@color/white"
-            android:background="@drawable/rounded_corner_background"
+            android:background="#000000"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp" />
 
         <!-- Resend Verification Email Button -->
@@ -86,17 +97,8 @@
             android:layout_height="wrap_content"
             android:text="Resend Verification Email"
             android:textColor="@color/white"
-            android:background="@drawable/rounded_corner_background"
+            android:background="#000000"
             android:layout_marginBottom="12dp" />
 
-        <!-- Register Button -->
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:textColor="@color/primaryColor"
-            android:backgroundTint="@color/black"
-            android:elevation="4dp" />
     </LinearLayout>
 </ScrollView>
