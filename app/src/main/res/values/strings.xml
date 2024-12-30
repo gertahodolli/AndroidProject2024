@@ -2,4 +2,23 @@
     <string name="app_name">The Spaghetti Diary</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- About Us -->
+    <string name="about_us_heading">About Spaghetti Diary</string>
+    <string name="about_us_description">
+        "Located in the heart of Pristina, The Spaghetti Diary offers authentic spaghetti made with the finest ingredients. Inspired by traditional recipes, we provide more than just a meal – it's an experience. Join us at Pristina City Center for the best spaghetti in town!"
+    </string>
+
+    <!-- Contact Us -->
+    <string name="contact_us_heading">Contact Us:</string>
+
+    <!-- Contact Information -->
+    <string name="instagram_handle">Spaghetti_Diary</string>
+    <string name="contact_phone">+383 44 535 183</string>
+    <string name="contact_email">contact@spaghettidiary.com</string>
+
+    <!-- Icons -->
+    <string name="instagram">Instagram</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
 </resources>
