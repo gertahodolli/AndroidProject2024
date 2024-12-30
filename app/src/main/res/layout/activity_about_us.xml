@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutUsActivity"
-    android:background="#000000">
+    android:background="#FFFFFF">
 
     <!-- Main content layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/primaryColor"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
             android:textColor="@color/primaryColor"
             android:padding="24dp"
             android:lineSpacingExtra="8dp"
-            android:background="@drawable/rounded_corner_background"
+            android:background="#FFFFFF"
             app:layout_constraintTop_toBottomOf="@id/aboutUsTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
