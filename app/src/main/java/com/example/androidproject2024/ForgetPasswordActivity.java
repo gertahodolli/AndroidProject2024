@@ -1,5 +1,7 @@
 package com.example.androidproject2024;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -18,9 +20,10 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     private EditText emailEditText;
     private Button resetPasswordButton;
     private ProgressBar progressBar;
-
+    private Button goBackButton;
     private FirebaseAuth mAuth;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +32,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         resetPasswordButton = findViewById(R.id.resetPasswordButton);
         progressBar = findViewById(R.id.progressBar);
+        goBackButton = findViewById(R.id.goBack);
 
         mAuth = FirebaseAuth.getInstance();
 
         resetPasswordButton.setOnClickListener(v -> resetPassword());
+        goBackButton.setOnClickListener(v -> startActivity(new Intent(ForgetPasswordActivity.this, LoginActivity.class)));
+
     }
 
     private void resetPassword() {

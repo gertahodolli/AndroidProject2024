@@ -24,8 +24,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         // Get data from intent
         String name = getIntent().getStringExtra("name");
-        int image = getIntent().getIntExtra("img.png", 0);
+        int image = getIntent().getIntExtra("imageResourceId", 0);
         String instructions = getIntent().getStringExtra("instructions");
+
 
         // Set data
         recipeNameTextView.setText(name);

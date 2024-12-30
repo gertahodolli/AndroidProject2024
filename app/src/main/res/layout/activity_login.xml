@@ -51,10 +51,5 @@
         android:layout_height="wrap_content"
         android:text="Register" />
 
-    <Button
-        android:id="@+id/newButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click Me" />
 
 </LinearLayout>

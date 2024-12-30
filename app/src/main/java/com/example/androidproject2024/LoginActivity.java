@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private Button loginButton, forgotPasswordButton, resendCodeButton, registerButton;
 
-    private Button newButton;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
 
@@ -43,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         resendCodeButton = findViewById(R.id.resendCodeButton);
         registerButton = findViewById(R.id.registerButton);
         progressBar = findViewById(R.id.progressBar);
-        newButton = findViewById(R.id.newButton);
 
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -53,12 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordButton.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ForgetPasswordActivity.class)));
         resendCodeButton.setOnClickListener(v -> resendVerificationCode());
 
-        newButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Buttoni i ri!", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
 

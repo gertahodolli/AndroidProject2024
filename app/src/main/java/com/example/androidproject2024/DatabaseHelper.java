@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "RecipeDatabase";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String TABLE_RECIPES = "recipes";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
@@ -45,8 +45,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void insertInitialRecipes(SQLiteDatabase db) {
         List<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("Spaghetti Carbonara", R.drawable.s_carbonara, "Cook pasta, fry pancetta with garlic, and mix with eggs and parmesan."));
-        recipes.add(new Recipe("Spaghetti Bolognese", R.drawable.s_bolognese, "Cook spaghetti and serve with a hearty meat sauce."));
+        recipes.add(new Recipe("Spaghetti Carbonara", R.drawable.s_carbonara, "To create a delicious pasta dish, start by bringing a large pot of salted water to a boil. Add your choice of pasta and cook according to the package instructions until al dente. While the pasta is cooking, cut pancetta into small cubes and fry in a deep skillet over medium heat until crispy. Add minced garlic to the pancetta during the last few minutes of cooking, taking care not to burn the garlic.\n" +
+                "\n" +
+                "In a separate bowl, beat together eggs and freshly grated Parmesan cheese, seasoning with black pepper to taste. Once the pasta is cooked, reserve a cup of pasta water and then drain the pasta. Quickly add the hot pasta to the pancetta and garlic in the skillet, removing the skillet from heat to prevent the eggs from scrambling.\n" +
+                "\n" +
+                "Pour the egg and cheese mixture over the pasta, tossing vigorously to coat the pasta evenly and create a creamy sauce. Add reserved pasta water a little at a time if the sauce is too thick. Serve immediately, garnishing with extra Parmesan and a sprinkle of freshly cracked black pepper."));
+
+        recipes.add(new Recipe("Spaghetti Bolognese", R.drawable.s_bolognese, "Cook spaghetti and serve with a hearty meat sauce.bblla blla bllaa blaa bllaa "));
         recipes.add(new Recipe("Spaghetti Aglio e Olio", R.drawable.s_aglio_olio, "Sauté garlic in olive oil, add red pepper flakes, and toss with spaghetti."));
         recipes.add(new Recipe("Spaghetti al Pomodoro", R.drawable.s_pomodoro, "Simple tomato sauce with fresh basil served over spaghetti."));
         recipes.add(new Recipe("Spaghetti alla Puttanesca", R.drawable.s_puttanesca, "Tomato sauce with olives, anchovies, and capers."));

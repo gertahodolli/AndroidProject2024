@@ -5,6 +5,15 @@
     android:padding="16dp"
     android:background="#FFF8E1">
 
+
+    <Button
+        android:id="@+id/btnTranslate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Translate to Albanian"
+        android:layout_marginTop="16dp"/>
+
+
     <ImageView
         android:id="@+id/recipeImageView"
         android:layout_width="match_parent"

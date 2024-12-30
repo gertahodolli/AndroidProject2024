@@ -6,12 +6,19 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 import androidx.core.view.GravityCompat;
+
+import android.view.Gravity;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 import android.util.Log;
 
@@ -26,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        showWelcomeMessage();
 
         Toolbar toolbar = findViewById(R.id.toolbar); // Ensure there's a toolbar in your layout
         setSupportActionBar(toolbar);
@@ -45,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(item -> {
+
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
@@ -56,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
             } else if (id == R.id.nav_about) {
                 Intent intent = new Intent(this, AboutUsActivity.class);
                 startActivity(intent);
+
             } else if(id == R.id.nav_login){
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
@@ -64,6 +75,13 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
     }
+
+    private void showWelcomeMessage() {
+        Toast.makeText(this, "Welcome to Recipes Dairy!", Toast.LENGTH_LONG).show();
+    }
+
+
+
 
     private void loadRecipes() {
         new Thread(() -> {
@@ -79,5 +97,4 @@ public class HomeActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(HomeActivity.this, "Failed to load recipes", Toast.LENGTH_SHORT).show());
             }
         }).start();
-    }
-}
+}}
