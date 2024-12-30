@@ -59,86 +59,93 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        String name = nameEditText.getText().toString().trim();
-        String surname = surnameEditText.getText().toString().trim();
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+        try {
+            String name = nameEditText.getText().toString().trim();
+            String surname = surnameEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
 
-        if (TextUtils.isEmpty(name)) {
-            nameEditText.setError("Name is required.");
-            nameEditText.requestFocus();
-            return;
+            if (TextUtils.isEmpty(name)) {
+                nameEditText.setError("Name is required.");
+                nameEditText.requestFocus();
+                return;
+            }
+
+            if (TextUtils.isEmpty(surname)) {
+                surnameEditText.setError("Surname is required.");
+                surnameEditText.requestFocus();
+                return;
+            }
+
+            if (TextUtils.isEmpty(email)) {
+                emailEditText.setError("Email is required.");
+                emailEditText.requestFocus();
+                return;
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailEditText.setError("Please enter a valid email.");
+                emailEditText.requestFocus();
+                return;
+            }
+
+            String passwordPattern = "^(?=.[A-Z])(?=.\\d)(?=.*[!@#$%^&()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
+            if (TextUtils.isEmpty(password)) {
+                passwordEditText.setError("Password is required.");
+                passwordEditText.requestFocus();
+                return;
+            }
+
+            if (!password.matches(passwordPattern)) {
+                passwordEditText.setError("Password must be at least 8 characters, contain at least one uppercase letter, and one number.");
+                passwordEditText.requestFocus();
+                return;
+            }
+
+            progressBar.setVisibility(View.VISIBLE);
+
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        progressBar.setVisibility(View.GONE);
+
+                        if (task.isSuccessful()) {
+                            String userId = mAuth.getCurrentUser().getUid();
+                            User user = new User(name, surname, email);
+                            databaseReference.child(userId).setValue(user)
+                                    .addOnCompleteListener(task1 -> {
+                                        if (task1.isSuccessful()) {
+                                            mAuth.getCurrentUser().sendEmailVerification()
+                                                    .addOnCompleteListener(verificationTask -> {
+                                                        if (verificationTask.isSuccessful()) {
+                                                            Toast.makeText(MainActivity.this, "Registration successful. Please verify your email.", Toast.LENGTH_LONG).show();
+                                                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        } else {
+                                                            Log.e("MainActivity", "Email verification failed: " + verificationTask.getException());
+                                                            Toast.makeText(MainActivity.this, "Failed to send verification email.", Toast.LENGTH_LONG).show();
+                                                        }
+                                                    });
+                                        } else {
+                                            Log.e("MainActivity", "Database write failed: " + task1.getException());
+                                            Toast.makeText(MainActivity.this, "Failed to save user data. Try again.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                        } else {
+                            Log.e("MainActivity", "Authentication failed: " + task.getException());
+                            Toast.makeText(MainActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+        } catch (NullPointerException e) {
+            Log.e("RegisterUser", "A NullPointerException occurred: " + e.getMessage());
+            Toast.makeText(this, "An unexpected error occurred. Please try again.", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("RegisterUser", "An unexpected exception occurred: " + e.getMessage());
+            Toast.makeText(this, "An unexpected error occurred. Please try again.", Toast.LENGTH_SHORT).show();
         }
-
-        if (TextUtils.isEmpty(surname)) {
-            surnameEditText.setError("Surname is required.");
-            surnameEditText.requestFocus();
-            return;
-        }
-
-        if (TextUtils.isEmpty(email)) {
-            emailEditText.setError("Email is required.");
-            emailEditText.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText.setError("Please enter a valid email.");
-            emailEditText.requestFocus();
-            return;
-        }
-
-        String passwordPattern = "^(?=.[A-Z])(?=.\\d)(?=.[!@#$%^&()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
-        if (TextUtils.isEmpty(password)) {
-            passwordEditText.setError("Password is required.");
-            passwordEditText.requestFocus();
-            return;
-        }
-
-        if (!password.matches(passwordPattern)) {
-            passwordEditText.setError("Password must be at least 8 characters, contain at least one uppercase letter, and one number.");
-            passwordEditText.requestFocus();
-            return;
-        }
-
-
-        progressBar.setVisibility(View.VISIBLE);
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    progressBar.setVisibility(View.GONE);
-
-                    if (task.isSuccessful()) {
-                        String userId = mAuth.getCurrentUser().getUid();
-                        User user = new User(name, surname, email);
-                        databaseReference.child(userId).setValue(user);
-
-                        databaseReference.child(userId).setValue(user).addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(verificationTask -> {
-                                    if (verificationTask.isSuccessful()) {
-                                        Toast.makeText(MainActivity.this, "Registration successful. Please verify your email.", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
-                                        Log.e("MainActivity", "Email verification failed: " + verificationTask.getException());
-                                        Toast.makeText(MainActivity.this, "Failed to send verification email.", Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                            } else {
-                                Log.e("MainActivity", "Database write failed: " + task1.getException());
-                                Toast.makeText(MainActivity.this, "Failed to save user data. Try again.", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    } else {
-                        Log.e("MainActivity", "Authentication failed: " + task.getException());
-                        Toast.makeText(MainActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-
-
     }
+
 
 
 }
