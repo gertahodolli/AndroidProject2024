@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://fiek.uni-pr.edu/">
-    <img src="/res/drawable/logo1.png" alt="Logo" height="40">
+    <img src="app/src/main/res/drawable/logo1.png" alt="Logo" height="40">
   </a>
 
 <h3 align="center">The Spaghetti Diary</h3>
@@ -61,12 +61,12 @@ Për të filluar applikacionin, ekzekutoni appin kryesor pasi ti keni marr tools
 ## Shembuj Ekzekutimi:
 
 - ### Video Ekzekutimi
- ![Alt text](/res/drawable/screcord.gif)
+ ![Alt text](app/src/main/res/drawable/screcord.gif)
 
 
 - ### Foto te Log-In dhe Home-Page:
- ![Alt text](/res/drawable/sc1.png)
- ![Alt text](/res/drawable/sc2.png)
+ ![Alt text](app/src/main/res/drawable/sc1.png)
+ ![Alt text](app/src/main/res/drawable/sc2.png)
 
 
 <br><br><br>
