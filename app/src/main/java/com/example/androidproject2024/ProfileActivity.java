@@ -74,6 +74,9 @@ public class ProfileActivity extends AppCompatActivity {
             } else if (id == R.id.nav_about) {
                 Intent intent = new Intent(this, AboutUsActivity.class);
                 startActivity(intent);
+            } else if(id == R.id.nav_login){
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
             }
             drawer.closeDrawer(GravityCompat.START);
             return true;
